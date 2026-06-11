@@ -1,0 +1,228 @@
+.sonoscan {
+  --sc-bg: #000;
+  --sc-fg: #fff;
+  --sc-meta: rgba(255, 255, 255, 0.55);
+  --sc-border: rgba(255, 255, 255, 0.38);
+  --sc-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --sc-serif: "Times New Roman", Times, serif;
+
+  background: var(--sc-bg);
+  color: var(--sc-fg);
+  font-family: var(--sc-sans);
+  line-height: 1.4;
+  border-top: 1px solid var(--sc-border);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.sonoscan .border-r { border-right: 1px solid var(--sc-border); }
+.sonoscan .border-b { border-bottom: 1px solid var(--sc-border); }
+
+.sonoscan .sc-hero {
+  min-height: 85vh;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  overflow: hidden;
+}
+
+.sonoscan .sc-hero > .hero-widget-col,
+.sonoscan .sc-hero > .hero-visual,
+.sonoscan .sc-hero > .hero-content {
+  border-bottom: 1.5px solid var(--sc-border);
+}
+
+.sonoscan .sc-hero > .hero-widget-col {
+  grid-column: 1;
+  border-right: 1.5px solid var(--sc-border);
+}
+
+.sonoscan .hero-visual {
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  grid-column: 2 / 4;
+  border-right: 1.5px solid var(--sc-border);
+}
+
+.sonoscan #sonoscan-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.sonoscan .hero-content {
+  grid-column: 4;
+  padding: 48px 36px 48px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.sonoscan .meta-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--sc-meta);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.sonoscan h1 {
+  font-size: clamp(2.35rem, 3.4vw, 3.65rem);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+  word-spacing: -0.12em;
+  font-weight: 700;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+  max-width: 100%;
+}
+
+.sonoscan .description {
+  font-family: var(--sc-serif);
+  font-size: 18px;
+  color: var(--sc-meta);
+  max-width: 320px;
+  margin-bottom: 40px;
+}
+
+.sonoscan .btn-plus {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.sonoscan .btn-plus:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sonoscan .features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+}
+
+.sonoscan .features::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: var(--sc-border);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.sonoscan .feature-card {
+  padding: 40px;
+  border-right: 1.5px solid var(--sc-border);
+  border-bottom: 1.5px solid var(--sc-border);
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sonoscan .feature-card:last-child {
+  border-right: none;
+}
+
+.sonoscan .feature-card h3 {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.sonoscan .feature-desc {
+  font-family: var(--sc-serif);
+  font-size: 14px;
+  color: var(--sc-meta);
+}
+
+.sonoscan .feature-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.sonoscan .price {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.sonoscan .canvas-label {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  font-size: 10px;
+  background: #000;
+  color: #fff;
+  padding: 4px 8px;
+  border: 1px solid var(--sc-border);
+  z-index: 10;
+}
+
+.sonoscan .visual-indicators {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.sonoscan .indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.sonoscan .indicator.active {
+  background: #fff;
+  border-color: #fff;
+}
+
+.sonoscan .feature-card--alt {
+  background: #0a0a0a;
+}
+
+@media (max-width: 1024px) {
+  .sonoscan .sc-hero {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .sonoscan .sc-hero > .hero-widget-col,
+  .sonoscan .sc-hero > .hero-visual,
+  .sonoscan .sc-hero > .hero-content {
+    grid-column: 1;
+    border-right: none;
+    border-bottom: 1.5px solid var(--sc-border);
+  }
+
+  .sonoscan .features {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sonoscan .feature-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .sonoscan .hero-visual {
+    height: 500px;
+  }
+}

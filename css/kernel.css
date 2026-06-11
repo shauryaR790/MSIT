@@ -1,0 +1,239 @@
+.kernel {
+  --kr-canvas: #000;
+  --kr-card: #141414;
+  --kr-card-hover: #1e1e1e;
+  --kr-ink: #fff;
+  --kr-gray: rgba(255, 255, 255, 0.65);
+  --kr-light: rgba(255, 255, 255, 0.45);
+  --kr-gap: 4px;
+  --kr-sans: 'Inter', sans-serif;
+  --kr-mono: 'JetBrains Mono', monospace;
+  --kr-ease: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  background: var(--kr-canvas);
+  color: var(--kr-ink);
+  font-family: var(--kr-sans);
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 100%;
+}
+
+.kernel .kernel-wrapper {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 40px;
+  width: 100%;
+  min-width: 0;
+}
+
+.kernel .bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: minmax(300px, auto);
+  gap: var(--kr-gap);
+  width: 100%;
+  min-width: 0;
+}
+
+.kernel .card {
+  background-color: var(--kr-card);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.4s var(--kr-ease);
+  text-decoration: none;
+  color: var(--kr-ink);
+  min-height: 320px;
+}
+
+.kernel .card:hover {
+  background-color: var(--kr-card-hover);
+}
+
+.kernel .card:hover .arrow-icon {
+  transform: translate(4px, -4px);
+}
+
+.kernel .card.dark {
+  background-color: #fff;
+  color: #111;
+}
+
+.kernel .card.dark:hover {
+  background-color: #f0f0f0;
+}
+
+.kernel .card.dark .meta-tag,
+.kernel .card.dark .copy {
+  color: #666;
+}
+
+.kernel .meta-tag {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--kr-light);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.kernel .headline {
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  max-width: 90%;
+}
+
+.kernel .headline-large {
+  font-size: 48px;
+  font-weight: 200;
+}
+
+.kernel .copy {
+  font-size: 13px;
+  color: var(--kr-gray);
+  line-height: 1.5;
+  max-width: 300px;
+}
+
+.kernel .stat-large {
+  font-size: 64px;
+  font-weight: 200;
+  letter-spacing: -0.04em;
+  margin-top: auto;
+}
+
+.kernel .arrow-icon {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-size: 14px;
+  transition: transform 0.3s var(--kr-ease);
+}
+
+.kernel .span-2 { grid-column: span 2; }
+.kernel .span-4 { grid-column: span 4; }
+.kernel .row-2 { grid-row: span 2; }
+
+.kernel .card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: grayscale(100%) contrast(1.1);
+  transition: filter 0.4s ease, transform 0.6s ease;
+  z-index: 0;
+}
+
+.kernel .card:hover .card-image {
+  filter: grayscale(0%) contrast(1);
+  transform: scale(1.02);
+}
+
+.kernel .content-overlay {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.kernel .terminal-block {
+  font-family: var(--kr-mono);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: auto;
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  width: 100%;
+}
+
+.kernel .card.dark .terminal-block {
+  color: #444;
+  border-top: 1px solid #ddd;
+}
+
+.kernel .prompt::before {
+  content: '➜ ';
+  color: var(--kr-light);
+}
+
+.kernel .cursor {
+  display: inline-block;
+  width: 6px;
+  height: 14px;
+  background-color: var(--kr-ink);
+  animation: kr-blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.kernel .card.dark .cursor {
+  background-color: #111;
+}
+
+.kernel .newsletter-input {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid #444;
+  padding-bottom: 8px;
+}
+
+.kernel .newsletter-input span:first-child {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.kernel .newsletter-input span:last-child {
+  margin-left: auto;
+  font-size: 12px;
+}
+
+@keyframes kr-blink {
+  50% { opacity: 0; }
+}
+
+@media (max-width: 1000px) {
+  .kernel .bento-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kernel .span-2,
+  .kernel .span-4 {
+    grid-column: span 2;
+  }
+
+  .kernel .row-2 {
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .kernel .kernel-wrapper {
+    padding: 20px;
+  }
+
+  .kernel .bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kernel .span-2,
+  .kernel .span-4 {
+    grid-column: span 1;
+  }
+
+  .kernel .headline-large {
+    font-size: 36px;
+  }
+}
