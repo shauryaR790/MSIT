@@ -176,6 +176,10 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+a.vault-card {
+  cursor: pointer;
+}
+
 .vault-card {
   position: relative;
   min-height: 280px;
@@ -401,53 +405,25 @@
   }
 
   .vault-grid--triple {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .vault-grid--triple .vault-card,
-  .vault-grid--triple .vault-card:nth-child(3n),
-  .vault-grid--triple .vault-card:nth-child(4n) {
+  .vault-grid--triple .vault-card:nth-child(3n) {
+    border-right: var(--vt-border-w) solid var(--vt-border);
+  }
+
+  .vault-grid--triple .vault-card:nth-child(2n) {
     border-right: none;
-    border-bottom: var(--vt-border-w) solid var(--vt-border);
-  }
-
-  .vault-grid--triple .vault-card:last-child {
-    border-bottom: none;
-  }
-}
-
-@media (max-width: 640px) {
-  .vault-filters {
-    grid-template-columns: 1fr;
-  }
-
-  .vault-filter {
-    border-right: none;
-    border-bottom: var(--vt-border-w) solid var(--vt-border);
-  }
-
-  .vault-filter:last-child {
-    border-bottom: none;
-  }
-
-  .vault-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .vault-card,
-  .vault-card:nth-child(4n),
-  .vault-card:nth-child(2n) {
-    border-right: none;
-  }
-
-  .vault-card--wide {
-    grid-column: span 1;
   }
 
   .vault-footer {
     grid-template-columns: 1fr;
     gap: 12px;
   }
+}
+
+@media (max-width: 640px) {
+  /* compact 2×2 handled in mobile.css */
 }
 
 @media (prefers-reduced-motion: reduce) {

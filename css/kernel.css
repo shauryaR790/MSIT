@@ -103,11 +103,93 @@
   max-width: 300px;
 }
 
+.kernel .card.card--top-head {
+  justify-content: flex-start;
+}
+
+.kernel .card.card--top-head .copy,
+.kernel .card.card--top-head .stat-large,
+.kernel .card.card--top-head .contact-card__terminal {
+  margin-top: auto;
+}
+
+.kernel .card--contact .headline {
+  margin-bottom: 28px;
+}
+
+.kernel .contact-display {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(24px, 5vw, 48px);
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.kernel .contact-display__status {
+  display: block;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--kr-light);
+  margin-bottom: 14px;
+}
+
+.kernel .contact-display__cta {
+  font-family: var(--kr-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--kr-gray);
+  margin: 0;
+  max-width: 280px;
+}
+
+.kernel .contact-display__email {
+  font-family: var(--kr-mono);
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0 0 8px;
+  word-break: break-all;
+}
+
+.kernel .contact-display__phone {
+  font-family: var(--kr-mono);
+  font-size: 13px;
+  color: var(--kr-gray);
+  margin: 0;
+  letter-spacing: 0.06em;
+}
+
+.kernel .contact-display__scope {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 160px;
+}
+
+.kernel .contact-display__scope p {
+  margin: 0;
+  font-size: 11px;
+  color: var(--kr-gray);
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.kernel .contact-display__scope span {
+  font-family: var(--kr-mono);
+  font-size: 9px;
+  color: var(--kr-light);
+  flex-shrink: 0;
+}
+
 .kernel .stat-large {
   font-size: 64px;
   font-weight: 200;
   letter-spacing: -0.04em;
-  margin-top: auto;
 }
 
 .kernel .arrow-icon {
@@ -221,19 +303,26 @@
 
 @media (max-width: 640px) {
   .kernel .kernel-wrapper {
-    padding: 20px;
+    padding: 12px;
   }
 
   .kernel .bento-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(160px, auto);
   }
 
   .kernel .span-2,
   .kernel .span-4 {
-    grid-column: span 1;
+    grid-column: span 2;
   }
 
   .kernel .headline-large {
-    font-size: 36px;
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .kernel .contact-display {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
   }
 }

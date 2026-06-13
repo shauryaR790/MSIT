@@ -1,33 +1,31 @@
-const CAROUSEL_IMAGE_IDS = [
-  '1493246507139-91e8fad9978e',
-  '1516035069371-29a1b244cc32',
-  '1507643179173-39db30be83d3',
-  '1519750783826-e2420f4d687f',
-  '1494438639946-1ebd1d20bf85',
-  '1500462918059-b1a0cb512f1d',
-  '1486718448742-1643916ef44d',
-  '1493514789931-5f7514745154',
-  '1530099486328-e021101a494a',
-  '1496747611176-843222e1e57c',
-  '1491895200230-24e84424a737',
-  '1520698115663-8a9d060f606e',
-  '1449247709948-96350937c885',
-  '1462331940187-285b04fb854f',
-  '1464822759023-fed622ff2c3b',
-];
+function buildImages(start, count) {
+  return Array.from({ length: count }, (_, i) => {
+    const num = String(start + i).padStart(2, '0');
+    return {
+      src: `screenshots/site-${num}.png`,
+      tag: `SITE_${num}`,
+      alt: `Site screenshot ${num}`,
+    };
+  });
+}
 
-const AUTO_SPEED = 0.65;
+const CAROUSEL_SETS = {
+  top: buildImages(1, 7),
+  bottom: buildImages(8, 8),
+};
 
-function createCard(id, index) {
+const DEFAULT_SPEED = 0.65;
+
+function createCard(image, index) {
   const card = document.createElement('article');
   card.className = 'carousel-card';
   card.innerHTML = `
     <span class="carousel-card__index label">${String(index + 1).padStart(3, '0')}</span>
     <div class="carousel-card__frame">
-      <img src="https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1200&h=675&q=80" alt="Website preview" loading="lazy" draggable="false" />
+      <img src="${image.src}" alt="${image.alt}" loading="lazy" draggable="false" />
     </div>
     <div class="carousel-card__foot">
-      <span class="carousel-card__tag label">REF_${id.slice(0, 4)}</span>
+      <span class="carousel-card__tag label">${image.tag}</span>
       <span class="carousel-card__mark label">■</span>
     </div>
   `;
@@ -40,19 +38,22 @@ function initCarousel(row) {
   if (!viewport || !track) return;
 
   const direction = parseInt(row.dataset.direction, 10) || 1;
+  const autoSpeed = parseFloat(row.dataset.speed) || DEFAULT_SPEED;
+  const setKey = row.dataset.images || 'top';
+  const images = CAROUSEL_SETS[setKey] || CAROUSEL_SETS.top;
 
-  CAROUSEL_IMAGE_IDS.forEach((id, index) => {
-    track.appendChild(createCard(id, index));
+  images.forEach((image, index) => {
+    track.appendChild(createCard(image, index));
   });
-  CAROUSEL_IMAGE_IDS.forEach((id, index) => {
-    track.appendChild(createCard(id, index));
+  images.forEach((image, index) => {
+    track.appendChild(createCard(image, index));
   });
 
   function measureSetWidth() {
     const card = track.querySelector('.carousel-card');
     if (!card) return 0;
     const gap = parseFloat(getComputedStyle(track).gap) || 0;
-    return CAROUSEL_IMAGE_IDS.length * (card.offsetWidth + gap);
+    return images.length * (card.offsetWidth + gap);
   }
 
   let setWidth = measureSetWidth();
@@ -78,7 +79,7 @@ function initCarousel(row) {
     if (!isDragging) {
       targetOffset += velocity;
       velocity *= 0.92;
-      targetOffset += AUTO_SPEED * direction;
+      targetOffset += autoSpeed * direction;
     }
 
     targetOffset = normalize(targetOffset);
@@ -134,8 +135,8 @@ function initCarousel(row) {
   }, { passive: true });
 
   if (direction < 0) {
-    targetOffset = setWidth / 2;
-    offset = setWidth / 2;
+    targetOffset = setWidth * 0.35;
+    offset = setWidth * 0.35;
   }
 
   window.addEventListener('resize', () => {

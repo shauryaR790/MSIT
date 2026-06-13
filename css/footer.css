@@ -1,0 +1,112 @@
+.site-footer {
+  --ft-bg: #000;
+  --ft-ink: #fff;
+  --ft-muted: rgba(255, 255, 255, 0.45);
+  --ft-border: rgba(255, 255, 255, 0.38);
+  --ft-border-w: 1.5px;
+  --ft-display: 'Oswald', sans-serif;
+  --ft-mono: 'Space Mono', monospace;
+
+  background: var(--ft-bg);
+  color: var(--ft-ink);
+  border-top: var(--ft-border-w) solid var(--ft-border);
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2rem);
+}
+
+.site-footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.site-footer__headline {
+  font-family: var(--ft-display);
+  font-size: clamp(2.25rem, 7vw, 5rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.site-footer__headline a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: opacity 0.15s ease;
+}
+
+.site-footer__headline a:hover {
+  opacity: 0.65;
+}
+
+.site-footer__headline span {
+  font-family: var(--ft-mono);
+  font-size: clamp(0.65rem, 1.2vw, 0.75rem);
+  letter-spacing: 0.12em;
+  opacity: 0.45;
+  vertical-align: middle;
+}
+
+.site-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  padding: clamp(1.25rem, 2.5vw, 1.5rem) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: clamp(1.25rem, 2.5vw, 1.5rem);
+}
+
+.site-footer__nav a {
+  font-family: var(--ft-display);
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color 0.15s ease;
+}
+
+.site-footer__nav a:hover {
+  color: var(--ft-ink);
+}
+
+.site-footer__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--ft-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ft-muted);
+}
+
+.site-footer__top {
+  color: var(--ft-ink);
+  padding: 8px 14px;
+  border: 1px solid var(--ft-border);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.site-footer__top:hover {
+  background: var(--ft-ink);
+  color: var(--ft-bg);
+}
+
+@media (max-width: 540px) {
+  .site-footer__meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer__headline a,
+  .site-footer__nav a,
+  .site-footer__top {
+    transition: none;
+  }
+}

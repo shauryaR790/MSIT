@@ -75,9 +75,6 @@
     const heroCols = root.querySelectorAll('.hero-col, .venn-container');
     const listItems = root.querySelectorAll('.list-item');
     const carousel = root.querySelector('.carousel-section');
-    const globalLeft = root.querySelector('.global-left');
-    const globalRight = root.querySelector('.global-right');
-    const globe = root.querySelector('.globe-svg');
     if (heroTitle) {
       gsap.from(heroTitle, {
         y: 120,
@@ -135,49 +132,6 @@
           trigger: carousel,
           start: 'top 90%',
           toggleActions: 'play none none reverse',
-        },
-      });
-    }
-
-    if (globalLeft) {
-      gsap.from(globalLeft.children, {
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: EASE,
-        scrollTrigger: {
-          trigger: globalLeft,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-    }
-
-    if (globalRight) {
-      gsap.from(globalRight, {
-        opacity: 0,
-        x: 60,
-        duration: 1,
-        ease: EASE_SNAP,
-        scrollTrigger: {
-          trigger: globalRight,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-    }
-
-    if (globe) {
-      gsap.to(globe, {
-        rotation: 360,
-        transformOrigin: '50% 50%',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: root.querySelector('.global-section'),
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 2,
         },
       });
     }

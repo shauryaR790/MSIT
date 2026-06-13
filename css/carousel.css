@@ -10,7 +10,15 @@
 }
 
 .weaverine .carousel-row + .carousel-row {
-  border-top: var(--wv-border-w) solid var(--wv-ink-alt);
+  border-top: none;
+}
+
+.weaverine .carousel-row + .carousel-row .carousel-viewport {
+  padding-top: 0;
+}
+
+.weaverine .carousel-row:not(:last-child) .carousel-viewport {
+  padding-bottom: 0.75rem;
 }
 
 .weaverine .carousel-row__meta {
@@ -104,12 +112,12 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: grayscale(100%) contrast(110%);
-  transition: filter 0.25s var(--ease-snap);
+  transition: transform 0.25s var(--ease-snap);
 }
 
 .weaverine .carousel-card:hover .carousel-card__frame img {
-  filter: grayscale(30%) contrast(100%);
+  transform: scale(1.02);
+  transition: transform 0.25s var(--ease-snap);
 }
 
 .weaverine .carousel-card__foot {

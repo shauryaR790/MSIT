@@ -1,5 +1,5 @@
 (function () {
-  const text = 'welcome to my portfolio. Here to help you out. reach me at rshaurya790@gmail.com or +91 8849670831. Ciao';
+  const text = 'welcome to my portfolio. full stack · ui/ux · cyber. scroll down — i ship live sites.';
   const speed = 100;
   let i = 0;
   const target = document.getElementById('figmint-typewriter');

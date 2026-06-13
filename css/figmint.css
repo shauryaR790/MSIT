@@ -601,3 +601,9 @@
     transform: scale(0.8) rotateY(-15deg) rotateX(5deg);
   }
 }
+
+@media (max-width: 768px) {
+  .figmint .product-col {
+    display: none;
+  }
+}

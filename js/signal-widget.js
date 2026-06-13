@@ -15,7 +15,7 @@
   const tickCount = 120;
   const cx = 140;
   const cy = 140;
-  const baseRadius = 105;
+  const baseRadius = 88;
   const baseTickLength = 4;
 
   function drawRadialTicks() {
